@@ -13,6 +13,7 @@ const multer = require('multer');
 const uploadMiddleware = multer({ dest: 'uploads/' });
 const fs=require('fs');
 const { subscribe } = require('diagnostics_channel');
+const port = process.env.PORT || 4000;
 
 const secret="itisasecretwordcreatedbyAziz";
 
@@ -342,6 +343,6 @@ app.put('/profile', async (req,res)=>{
 //url API infobip:9lmjly.api.infobip.com
 //zP11TjAzeJMo4K66
 //mongodb+srv://AzizMehrez:zP11TjAzeJMo4K66@blog.1ztshju.mongodb.net/?retryWrites=true&w=majority&appName=blog
-app.listen(4000, ()=>{
-    console.log("listening at port 4000");
+app.listen(port, ()=>{
+    console.log("listening at port "+port);
 });
