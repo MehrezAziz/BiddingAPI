@@ -16,7 +16,7 @@ const { subscribe } = require('diagnostics_channel');
 require('dotenv').config();
 
 const port = process.env.PORT || 4000;
-const mongodbConnection=process.env.mongodbConnection;
+const mongodbConnection=process.env.mongodbConnection || "mongodb+srv://AzizMehrez:zP11TjAzeJMo4K66@blog.1ztshju.mongodb.net/?retryWrites=true&w=majority&appName=blog";
 const secret="itisasecretwordcreatedbyAziz";
 
 app.use(cors({credentials:true, origin:["http://localhost:3000","https://mehrezsouid.onrender.com"]}));
