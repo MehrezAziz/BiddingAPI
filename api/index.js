@@ -19,7 +19,8 @@ const port = process.env.PORT || 4000;
 const mongodbConnection=process.env.mongodbConnection || "mongodb+srv://AzizMehrez:zP11TjAzeJMo4K66@blog.1ztshju.mongodb.net/?retryWrites=true&w=majority&appName=blog";
 const secret="itisasecretwordcreatedbyAziz";
 
-app.use(cors({credentials:true, origin:"https://mehrezsouid.onrender.com"}));
+app.use(cors({credentials:true, origin:"https://mehrezsouid.onrender.com" , allowedHeaders: "Content-Type",
+}));
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads',express.static(__dirname+'/uploads'));
