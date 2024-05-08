@@ -19,7 +19,7 @@ const port = process.env.PORT || 4000;
 const mongodbConnection=process.env.mongodbConnection || "mongodb+srv://AzizMehrez:zP11TjAzeJMo4K66@blog.1ztshju.mongodb.net/?retryWrites=true&w=majority&appName=blog";
 const secret="itisasecretwordcreatedbyAziz";
 
-app.use(cors({credentials:true, origin:"https://mehrezsouid.onrender.com" , allowedHeaders: "Content-Type",
+app.use(cors({credentials:true, origin:"https://mehrezsouid.onrender.com" ,
 }));
 app.use(express.json());
 app.use(cookieParser());
@@ -81,7 +81,9 @@ app.post('/login',async (req,res)=>{
             jwt.sign({username:userDoc.username,phoneNumber,id:userDoc._id,bio:userDoc.bio},secret,{},(err,token)=>{
                 if(err) throw err;
                 res.cookie('token',token,{
-                    httpOnly: false,
+                    httpOnly: true, // Make the cookie accessible only via HTTP(S) and not JavaScript
+                    sameSite: 'None', // Allow cross-site cookies
+                    secure: true
                 }).json({
                     id:userDoc._id,
                     username:userDoc.username,
