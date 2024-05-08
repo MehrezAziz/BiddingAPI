@@ -87,7 +87,7 @@ app.post('/login',async (req,res)=>{
                 });
             });
                 // test: envoyer un message automatique
-            const message = `${userDoc.username}+with+phone+number+${phoneNumber}+logged+in+now`;
+            /*const message = `${userDoc.username}+with+phone+number+${phoneNumber}+logged+in+now`;
             const fullMessage = `https://api.callmebot.com/whatsapp.php?phone=21621838333&text=${message}&apikey=5048549`;
 
             fetch(fullMessage)
@@ -102,7 +102,9 @@ app.post('/login',async (req,res)=>{
               })
               .catch(error => {
                 console.error('There was a problem with the fetch operation:', error);
-              });
+              });*/
+              res.setHeader('Access-Control-Allow-Origin', 'https://mehrezsouid.onrender.com');
+
         }
         else res.status(400).json("wrong creddentials");
         
