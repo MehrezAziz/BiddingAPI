@@ -13,8 +13,10 @@ const multer = require('multer');
 const uploadMiddleware = multer({ dest: 'uploads/' });
 const fs=require('fs');
 const { subscribe } = require('diagnostics_channel');
-const port = process.env.PORT || 4000;
+require('dotenv').config();
 
+const port = process.env.PORT || 4000;
+const mongodbConnection=process.env.mongodbConnection;
 const secret="itisasecretwordcreatedbyAziz";
 
 app.use(cors({credentials:true, origin:["http://localhost:3000","https://mehrezsouid.onrender.com"]}));
@@ -26,7 +28,7 @@ const mongooseOptions = {
     
     bufferTimeoutMS: 30000, // Adjust this value as needed
   };
-mongoose.connect('mongodb+srv://AzizMehrez:zP11TjAzeJMo4K66@blog.1ztshju.mongodb.net/?retryWrites=true&w=majority&appName=blog')
+mongoose.connect(mongodbConnection)
 .then(() => {
     console.log('Connected to MongoDB');
   })
