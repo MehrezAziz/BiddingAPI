@@ -80,9 +80,7 @@ app.post('/login',async (req,res)=>{
             jwt.sign({username:userDoc.username,phoneNumber,id:userDoc._id,bio:userDoc.bio},secret,{},(err,token)=>{
                 if(err) throw err;
                 res.cookie('token',token,{
-                    httpOnly: true,
-                    sameSite: 'strict',
-                    domain: '.mehrezsouid.onrender.com' // Cookie valid for all subdomains
+                    httpOnly: false,
                 }).json({
                     id:userDoc._id,
                     username:userDoc.username,
