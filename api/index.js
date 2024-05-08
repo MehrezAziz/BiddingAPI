@@ -79,7 +79,11 @@ app.post('/login',async (req,res)=>{
         if (passOk){ 
             jwt.sign({username:userDoc.username,phoneNumber,id:userDoc._id,bio:userDoc.bio},secret,{},(err,token)=>{
                 if(err) throw err;
-                res.cookie('token',token).json({
+                res.cookie('token',token,{
+                    httpOnly: true,
+                    sameSite: 'strict',
+                    domain: '.mehrezsouid.onrender.com' // Cookie valid for all subdomains
+                }).json({
                     id:userDoc._id,
                     username:userDoc.username,
                     phoneNumber,
@@ -103,7 +107,6 @@ app.post('/login',async (req,res)=>{
               .catch(error => {
                 console.error('There was a problem with the fetch operation:', error);
               });*/
-              res.setHeader('Access-Control-Allow-Origin', 'https://mehrezsouid.onrender.com');
 
         }
         else res.status(400).json("wrong creddentials");
